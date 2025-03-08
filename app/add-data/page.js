@@ -1,12 +1,11 @@
 "use client"
 import { useState } from 'react'
-const page = () => {
+const Page = () => {
     const[click,clickchange]=useState("")
     const[num,numplus]=useState(0)
 
     const buttonclicked=()=>{
         clickchange("button clicked")
-        alert("button click")
         numplus(num+1)
         
     }
@@ -23,4 +22,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
