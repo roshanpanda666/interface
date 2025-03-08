@@ -1,25 +1,36 @@
 "use client"
-import { useState } from 'react'
+
 const Page = () => {
-    const[click,clickchange]=useState("")
-    const[num,numplus]=useState(0)
 
-    const buttonclicked=()=>{
-        clickchange("button clicked")
-        numplus(num+1)
-        
+    const postData = async () => {
+        try {
+            const response = await fetch('/api/data', { // Change URL to your actual API endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: "button clicked" }) // Sending click state
+                
+            });
+
+            if (response.ok) {
+                alert("Data posted successfully");
+            } else {
+                alert("Failed to post data");
+            }
+        } catch (error) {
+            console.error("Error posting data:", error);
+        }
     }
-  return (
-    <div>
-      <div>
-            <button onClick={buttonclicked}>click</button>
-      </div>
 
-      <div>
-        {click}<span>{num}</span>
-      </div>
-    </div>
-  )
+    return (
+        <div>
+            <div>
+               
+                <button onClick={postData}>Post Data</button>
+            </div>
+        </div>
+    )
 }
 
 export default Page
